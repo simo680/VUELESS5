@@ -1,7 +1,7 @@
 <template>
   <h2>Users</h2>
   <div>
-    <div v-for="user in users" :key="user.id" @dbclick="deleteUsers(user.id)">
+    <div v-for="user in users" :key="user.id" @click="changeAge(user.age)" @dblclick="deleteUsers(user.id)">
       <h3>{{ user.firstName }}</h3>
       <p>{{ user.age }}</p>
     </div>
@@ -20,11 +20,18 @@ let data = [
 
 export default {
   data() {
-    return {}
+    return {
+      users: JSON.parse(localStorage.getItem('users')) ?? data
+    }
   },
   methods: {
+    changeAge() {
+      this.users = Math.round(this.users.age * 1.1)
+     
+      
+    },
     deleteUsers(id) {
-      this.users = this.users.filter((elem) => elem.id !== id)
+      this.users = this.users.filter(elem => elem.id !== id)
     }
   },
   watch: {
@@ -35,8 +42,13 @@ export default {
 
   async mounted() {
     if (!localStorage.getItem('users')) {
-      let res = await axios.get('https://dummyjson.com/users')
+      try {
+        let res = await axios.get('https://dummyjson.com/users')
       this.users = [...this.users, ...res.data.users]
+      }
+      catch(e) {
+        console.log(e);
+      }
     }
   }
 }
