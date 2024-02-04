@@ -1,14 +1,17 @@
 <script >
 import Example from './components/Example.vue'
+import UserList from './components/UserList.vue';
 export default {
   components: {
-    Example
+    Example,
+    UserList,
   }
 }
 </script>
 
 <template>
     <example/>
+    <user-list/>
 </template>
 
 <style scoped>

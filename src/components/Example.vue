@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>User</p>
+    <h2>Example</h2>
     <input v-model="name" />
     <input v-model="lastName" />
     <p>{{ fullName }}</p>
@@ -32,18 +32,18 @@ export default {
       console.log(newValue, 'new name')
       console.log(oldValue, 'change value')
     },
-    //     name() {
-    //       console.log(this.name, 'change name')
-    //     },
+        name() {
+          console.log(this.name, 'change name')
+        },
     lastName() {
       console.log(this.lastName, 'change lastName')
+    },
+    fullNameWatch(){
+           console.log(this.fullNameWatch, 'change fullName');
     }
-    // fullNameWatch(){
-    //        console.log(this.fullNameWatch, 'change fullName');
-    // }
   },
-  mounted() {
-    this.name = 'ahahahahah'
-  }
+  // mounted() {
+  //   this.name = 'ahahahahah'
+  // }
 }
 </script>
